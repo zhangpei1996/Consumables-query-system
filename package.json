@@ -3,15 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve --open --mode development --host 0.0.0.0 --port 3003",
+    "build": "vue-cli-service build --mode production --dest dist",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
+    "element-ui": "^2.4.5",
+    "file-saver": "^2.0.2",
+    "mavon-editor": "^2.7.5",
+    "moment": "^2.24.0",
+    "nprogress": "^0.2.0",
+    "qs": "^6.9.1",
     "vue": "^2.6.10",
+    "vue-particles": "^1.0.9",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "xlsx": "^0.14.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",
@@ -23,6 +33,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.10"
   }
 }

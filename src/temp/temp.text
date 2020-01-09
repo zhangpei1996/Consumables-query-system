@@ -1,0 +1,77 @@
+<el-button @click="handleDownload" style="margin-top: 2px;" size="medium" type="success">导出</el-button>
+        <el-table
+            id="rebateSetTable"
+            :data="tableData"
+            style="width: 100%">
+            <el-table-column
+            prop="date"
+            label="日期"
+            sortable
+            :sort-orders="['ascending', 'descending']"
+            width="180">
+            </el-table-column>
+            <el-table-column
+            prop="name"
+            label="姓名"
+            sortable
+            :sort-orders="['ascending', 'descending']"
+            width="180">
+            </el-table-column>
+            <el-table-column
+            prop="address"
+            label="地址"
+            sortable
+            :sort-orders="['ascending', 'descending']">
+            </el-table-column>
+        </el-table>
+
+        data () {
+        return {
+            tableData: [{
+                date: '2013-05-02',
+                name: '张天',
+                address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                date: '2014-05-04',
+                name: '李海',
+                address: '上海市普陀区金沙江路 1517 弄'
+                }, {
+                date: '2015-05-01',
+                name: '王琦',
+                address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                date: '2016-05-03',
+                name: '包符',
+                address: '上海市普陀区金沙江路 1516 弄'
+            }],
+            autoWidth: true,
+            bookType: 'xlsx',
+            tValue: ['date', 'name', 'address'],
+            tHeader: ['date', 'name', 'address']
+        }
+    },
+    methods: {
+        handleDownload () {
+            const date = new Date();
+            let year = (date.getUTCFullYear()).toString().substr(2);
+            let month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+            let day = (date.getDate()).toString().padStart(2, '0');
+            const fileName = `耗材${year}${month}${day}`
+            import('./plugins/Export2Excel.js').then(excel => {
+                const data = this.formatJson(this.tValue, this.tableData)
+                excel.export_json_to_excel({
+                    header: this.tHeader,
+                    data,
+                    filename: fileName,
+                    autoWidth: true,
+                    bookType: 'xlsx'
+                })
+            });
+        },
+        formatJson (filterVal, jsonData) {
+            return jsonData.map(v => filterVal.map(j => {
+                return v[j]
+            }));
+        }
+    },
+    created () {}

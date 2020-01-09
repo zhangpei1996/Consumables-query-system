@@ -4,13 +4,20 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  }
+    state: {
+        menuIsCollapse: true,
+        nickname: ''
+    },
+    mutations: {
+        setMenuIsCollapse (state, flag) {
+            state.menuIsCollapse = flag
+        },
+        setNickname (state, nickname) {
+            state.nickname = nickname
+        }
+    },
+    getters: {
+        getMenuIsCollapse: state => state.menuIsCollapse,
+        getNickname: state => state.nickname
+    }
 })
