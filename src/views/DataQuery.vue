@@ -7,16 +7,14 @@
                     <el-date-picker
                         v-model="startTime"
                         type="date"
-                        placeholder="选择起始日期"
-                        @focus="startTime = ''">
+                        placeholder="选择起始日期">
                     </el-date-picker>
                 </el-form-item>
                 <el-form-item label="结束时间:">
                     <el-date-picker
                         v-model="endTime"
                         type="date"
-                        placeholder="选择结束日期"
-                        @focus="endTime = ''">
+                        placeholder="选择结束日期">
                     </el-date-picker>
                 </el-form-item>
                 <el-form-item label="唯一标识:">
@@ -331,12 +329,19 @@ export default {
         },
         submitForm (queryFrom) { // 提交查询表单
             this.queryFrom.pageNum = 1;
+            const tomorrow = Date.now() + 24 * 60 * 60 * 1000;
             if (this.startTime && this.endTime) {
                 this.queryFrom.startTime = moment(this.startTime).format('YYYYMMDD');
                 this.queryFrom.endTime = moment(this.endTime).format('YYYYMMDD');
+            } else if (!this.startTime && this.endTime) {
+                this.queryFrom.startTime = '19700101';
+                this.queryFrom.endTime = moment(this.endTime).format('YYYYMMDD');
+            } else if (this.startTime && !this.endTime) {
+                this.queryFrom.startTime = moment(this.startTime).format('YYYYMMDD');
+                this.queryFrom.endTime = moment(tomorrow).format('YYYYMMDD');
             } else {
-                this.queryFrom.startTime = '';
-                this.queryFrom.endTime = '';
+                this.queryFrom.startTime = '19700101';
+                this.queryFrom.endTime = moment(tomorrow).format('YYYYMMDD');
             }
             this.getData(this.queryFrom);
         },

@@ -6,8 +6,6 @@ import Index from './views/Index.vue';
 import Menu from './components/Menu.vue';
 import Main from './components/Main.vue';
 import DataQuery from './views/DataQuery.vue';
-import ToUpload from './views/ToUpload.vue';
-import ConsumableLog from './views/ConsumableLog.vue';
 import Login from './views/Login.vue';
 
 Vue.use(Router)
@@ -27,9 +25,7 @@ const router = new Router({
                     main: Main
                 },
                 children: [
-                    { path: '/', component: DataQuery, meta: { isLogin: true } },
-                    { path: '/to_upload', component: ToUpload, meta: { isLogin: true } },
-                    { path: '/consumable_log', component: ConsumableLog, meta: { isLogin: true } }
+                    { path: '/', component: DataQuery, meta: { isLogin: true } }
                 ]
             }
         ] }
