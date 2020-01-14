@@ -47,7 +47,7 @@ Axios.interceptors.response.use(function (response) {
 });
 
 // 设置公共请求路径
-// Axios.defaults.baseURL = 'http://172.16.201.68:8080/hc/hc';
+// Axios.defaults.baseURL = 'http://172.16.201.109:8080/hc/hc';
 // Axios.defaults.baseURL = 'http://172.31.5.55:8080/hc/hc';
 // Axios.defaults.baseURL = 'http://192.168.137.220:8082/hc';
 // Axios.defaults.baseURL = 'http://172.31.8.49:8080/hc';
